@@ -20,5 +20,11 @@ $routes->post('chat/ask', 'Chat::ask');
 $routes->get('/', 'dashboard::index');
 $routes->get('/konten/dashboard', 'Dashboard::dashboard');
 
-$routes->get('/', 'product::index');
-$routes->get('/konten/product', 'Product::product');
+$routes->get('/', 'Product::index'); // Halaman utama menampilkan produk
+$routes->get('/product', 'Product::index'); // Alias /product
+
+// CRUD Routing
+$routes->post('/product/save', 'Product::save');
+$routes->get('/product/edit/(:num)', 'Product::edit/$1');
+$routes->get('/product/detail/(:num)', 'Product::detail/$1');
+$routes->get('/product/delete/(:num)', 'Product::delete/$1');

@@ -72,6 +72,7 @@
       src="https://example.com/fontawesome/js/all.js"
       data-auto-add-css="true"
     ></script>
+    
 </body>
 
 </html>

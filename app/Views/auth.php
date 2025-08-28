@@ -1,154 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
+    <!-- Basic Page Info -->
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title><?= esc($title ?? 'Default') ?></title>
-    <!-- loader-->
-    <link href="<?= base_url('template/assets/css/pace.min.css') ?>" rel="stylesheet" />
-    <script src="<?= base_url('template/assets/js/pace.min.js') ?>"></script>
-    <!--favicon-->
-    <link rel="icon" href="<?= base_url('template/assets/images/quantura.png') ?>" type="image/x-icon">
-    <!-- Bootstrap core CSS-->
-    <link href="<?= base_url('template/assets/css/bootstrap.min.css') ?>" rel="stylesheet" />
-    <!-- animate CSS-->
-    <link href="<?= base_url('template/assets/css/animate.css') ?>" rel="stylesheet" type="text/css" />
-    <!-- Icons CSS-->
-    <link href="<?= base_url('template/assets/css/icons.css') ?>" rel="stylesheet" type="text/css" />
-    <!-- Custom Style-->
-    <link href="<?= base_url('template/assets/css/app-style.css') ?>" rel="stylesheet" />
+    <title><?= esc($title ?? 'default') ?></title>
 
+    <!-- Site favicon -->
+    <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="<?= base_url('assets/vendors/images/apple-touch-icon.png') ?>" />
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="<?= base_url('assets/vendors/images/favicon-32x32.png') ?>" />
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="<?= base_url('assets/vendors/images/favicon-16x16.png') ?>" />
+
+    <!-- Mobile Specific Metas -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/master/vendors/styles/core.css') ?>" />
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="<?= base_url('assets/master/vendors/styles/icon-font.min.css') ?>" />
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/master/vendors/styles/style.css') ?>" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"></script>
+    <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258"
+        crossorigin="anonymous"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+
+        gtag("config", "G-GBZ3SGGX85");
+    </script>
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                "gtm.start": new Date().getTime(),
+                event: "gtm.js"
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != "dataLayer" ? "&l=" + l : "";
+            j.async = true;
+            j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
+    </script>
+    <!-- End Google Tag Manager -->
 </head>
 
-<body class="bg-theme bg-theme2">
-
-    <!-- start loader -->
-    <div id="pageloader-overlay" class="visible incoming">
-        <div class="loader-wrapper-outer">
-            <div class="loader-wrapper-inner">
-                <div class="loader"></div>
-            </div>
-        </div>
-    </div>
-    <!-- end loader -->
-
-    <!-- Start wrapper-->
-    <div id="wrapper">
-
-        <div class="loader-wrapper">
-            <div class="lds-ring">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-        <div class="card card-authentication1 mx-auto my-5">
-            <div class="card-body">
-                <div class="card-content p-1">
-                    <!-- <div class="text-center">
-                        <img src="<?= base_url('template/assets/images/quantura.png') ?>" alt="logo icon">
-                    </div> -->
-                    <div class="card-title text-uppercase text-center py-3">Quantura</div>
-                    <form action="<?= base_url('auth/login') ?>" method="post" novalidate>
-                        <div class="form-group">
-                            <label for="exampleInputUsername" class="sr-only">Username</label>
-                            <div class="position-relative has-icon-right">
-                                <input type="text" name="username" class="form-control input-shadow" placeholder="Masukan Username" required value="<?= old('username') ?>">
-                                <div class="form-control-position">
-                                    <i class="icon-user"></i>
+<body class="login-page">
+    <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 col-lg-7">
+                    <img src="<?= base_url('assets/master/vendors/images/login-page-img.png') ?>" alt="" />
+                </div>
+                <div class="col-md-6 col-lg-5">
+                    <div class="login-box bg-white box-shadow border-radius-10">
+                        <div class="login-title">
+                            <h2 class="text-center text-primary">Login</h2>
+                        </div>
+                        <form action="<?= base_url('auth/login') ?>" method="post" novalidate>
+                            <div class="input-group custom">
+                                <input
+                                    type="text"
+                                    name="username"
+                                    class="form-control form-control-lg"
+                                    placeholder="Username"
+                                    required
+                                    value="<?= old('username') ?>" />
+                                <div class="input-group-append custom">
+                                    <span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword" class="sr-only">Password</label>
-                            <div class="position-relative has-icon-right">
-                                <input type="password" id="password" name="password" class="form-control input-shadow" placeholder="Masukkan Password">
-                                <div class="form-control-position">
-                                    <i class="icon-lock"></i>
+                            <div class="input-group custom">
+                                <input
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    class="form-control form-control-lg"
+                                    placeholder="**********" />
+                                <div class="input-group-append custom">
+                                    <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-6">
-                                <div class="icheck-material-white">
-                                    <input type="checkbox" id="user-checkbox" checked="" />
-                                    <label for="user-checkbox">Remember me</label>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="input-group mb-0">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block"> Sign In</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <button type="submit" class="btn btn-light btn-block">Sign In</button>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!--Start Back To Top Button-->
-        <a href="<?= base_url('template/javaScript:void();') ?>" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
-        <!--End Back To Top Button-->
-
-        <!--start color switcher-->
-        <div class="right-sidebar">
-            <div class="switcher-icon">
-                <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
-            </div>
-            <div class="right-sidebar-content">
-
-                <p class="mb-0">Gaussion Texture</p>
-                <hr>
-
-                <ul class="switcher">
-                    <li id="theme1"></li>
-                    <li id="theme2"></li>
-                    <li id="theme3"></li>
-                    <li id="theme4"></li>
-                    <li id="theme5"></li>
-                    <li id="theme6"></li>
-                </ul>
-
-                <p class="mb-0">Gradient Background</p>
-                <hr>
-
-                <ul class="switcher">
-                    <li id="theme7"></li>
-                    <li id="theme8"></li>
-                    <li id="theme9"></li>
-                    <li id="theme10"></li>
-                    <li id="theme11"></li>
-                    <li id="theme12"></li>
-                    <li id="theme13"></li>
-                    <li id="theme14"></li>
-                    <li id="theme15"></li>
-                </ul>
-
-            </div>
-        </div>
-        <!--end color switcher-->
-
-    </div><!--wrapper-->
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="<?= base_url('template/assets/js/jquery.min.js') ?>"></script>
-    <script src="<?= base_url('template/assets/js/popper.min.js') ?>"></script>
-    <script src="<?= base_url('template/assets/js/bootstrap.min.js') ?>"></script>
-
-    <!-- sidebar-menu js -->
-    <script src="<?= base_url('template/assets/js/sidebar-menu.js') ?>"></script>
-
-    <!-- Custom scripts -->
-    <script src="<?= base_url('template/assets/js/app-script.js') ?>"></script>
-
-    <script>
-        Swal.fire({
-            title: "Opps...",
-            text: "Login Gagal",
-            icon: "error"
-        });
-    </script>
+    </div>
+    <!-- js -->
+    <script src="<?= base_url('assets/master/vendors/scripts/core.js') ?>"></script>
+    <script src="<?= base_url('assets/master/vendors/scripts/script.min.js') ?>"></script>
+    <script src="<?= base_url('assets/master/vendors/scripts/process.js') ?>"></script>
+    <script src="<?= base_url('assets/master/vendors/scripts/layout-settings.js') ?>"></script>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
+            height="0"
+            width="0"
+            style="display: none; visibility: hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 </body>
 
 </html>

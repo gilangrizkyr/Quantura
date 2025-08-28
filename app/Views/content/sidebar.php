@@ -10,6 +10,15 @@
                     <img src="<?= base_url('template/assets/images/quantura.png') ?>" class="logo-icon" alt="logo icon">
                     <h5 class="logo-text">Quantura</h5>
                 </a>
+                <nav class="navbar navbar-expand fixed-top">
+                    <ul class="navbar-nav mr-auto align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link toggle-menu" href="<?= base_url('template/javascript:void();') ?>">
+                                <i class="icon-menu menu-icon"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
             <ul class="sidebar-menu do-nicescrol">
                 <li class="sidebar-header">NAVIGATION</li>
@@ -18,9 +27,8 @@
                         <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
                     </a>
                 </li>
-
                 <li>
-                    <a href="<?= base_url('konten/product') ?>">
+                    <a href="<?= base_url('/product') ?>">
                         <i class="zmdi zmdi-invert-colors"></i> <span>Product (icon)</span>
                     </a>
                 </li>

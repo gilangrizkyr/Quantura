@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use CodeIgniter\Controller;
 use App\Models\ChatLogModel;
 
 class Chat extends BaseController
@@ -34,7 +33,7 @@ class Chat extends BaseController
 
     private function askAI($prompt)
     {
-        $apiKey = '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'; // API Model Ai
+        $apiKey = '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'; // API Model Ai
         $model = 'openai/gpt-3.5-turbo';
 
         $url = 'https://openrouter.ai/api/v1/chat/completions';
@@ -59,7 +58,6 @@ Berikut panduan agar jawabanmu selalu:
 9. Berikan jawaban apapun itu pertanyaan nya dengan sopan
 10. Berikan sebuah link file yang berisi sesuai kebutuhan admin
 11. Berikan jawaban yang sesuai dengan pertanyaan yang diajukan
-12. Jika pertanyaan tidak sesuai dengan kebutuhan admin, berikan jawaban yang sesuai dengan kebutuhan admin
 
 Tolong jawab semua pertanyaan dengan format dan pendekatan ini.
 EOD
@@ -75,7 +73,7 @@ EOD
         $headers = [
             "Authorization: Bearer $apiKey",
             "Content-Type: application/json",
-            "HTTP-Referer: http://localhost:8080/", // Sesuaikan domain kamu
+            "HTTP-Referer: http://localhost:8080/",
             "X-Title: Chat Admin Toko"
         ];
 
