@@ -13,11 +13,11 @@ class Dashboard extends BaseController
 
     public function dashboard()
     {
-        // return view('content/header', ['title' => 'Quantura | Product']) .
-        //     view('content/navbar') .
-        //     view('content/sidebar') .
-        //     view('konten/dashboard') .
-        //     view('content/footer');
-        return view('konten/dashboard', ['title' => 'Quantura | Dashboard']);
+        return view('content/header', ['title' => 'Quantura | Product']) .
+            view('content/navbar') .
+            view('content/sidebar') .
+            view('konten/dashboard') .
+            view('content/footer');
+        // return view('konten/dashboard', ['title' => 'Quantura | Dashboard']);
     }
 }

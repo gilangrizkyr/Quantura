@@ -58,6 +58,7 @@ Berikut panduan agar jawabanmu selalu:
 9. Berikan jawaban apapun itu pertanyaan nya dengan sopan
 10. Berikan sebuah link file yang berisi sesuai kebutuhan admin
 11. Berikan jawaban yang sesuai dengan pertanyaan yang diajukan
+// 12. Jika terjadi typo atau salah pengetikan pada users cobalah untuk mengerti apa yang di inginkan users
 
 Tolong jawab semua pertanyaan dengan format dan pendekatan ini.
 EOD

@@ -1,86 +1,196 @@
-<body class="bg-theme bg-theme1">
+ <div class="right-sidebar">
+     <div class="sidebar-title">
+         <h3 class="weight-600 font-16 text-blue">
+             Layout Settings
+             <span class="btn-block font-weight-400 font-12">User Interface Settings</span>
+         </h3>
+         <div class="close-sidebar" data-toggle="right-sidebar-close">
+             <i class="icon-copy ion-close-round"></i>
+         </div>
+     </div>
+     <div class="right-sidebar-body customscroll">
+         <div class="right-sidebar-body-content">
+             <h4 class="weight-600 font-18 pb-10">Header Background</h4>
+             <div class="sidebar-btn-group pb-30 mb-10">
+                 <a
+                     href="javascript:void(0);"
+                     class="btn btn-outline-primary header-white active">White</a>
+                 <a
+                     href="javascript:void(0);"
+                     class="btn btn-outline-primary header-dark">Dark</a>
+             </div>
 
-    <!-- Start wrapper-->
-    <div id="wrapper">
+             <h4 class="weight-600 font-18 pb-10">Sidebar Background</h4>
+             <div class="sidebar-btn-group pb-30 mb-10">
+                 <a
+                     href="javascript:void(0);"
+                     class="btn btn-outline-primary sidebar-light">White</a>
+                 <a
+                     href="javascript:void(0);"
+                     class="btn btn-outline-primary sidebar-dark active">Dark</a>
+             </div>
 
-        <!--Start sidebar-wrapper-->
-        <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
-            <div class="brand-logo">
-                <a href="index.html">
-                    <img src="<?= base_url('template/assets/images/quantura.png') ?>" class="logo-icon" alt="logo icon">
-                    <h5 class="logo-text">Quantura</h5>
-                </a>
-                <nav class="navbar navbar-expand fixed-top">
-                    <ul class="navbar-nav mr-auto align-items-center">
-                        <li class="nav-item">
-                            <a class="nav-link toggle-menu" href="<?= base_url('template/javascript:void();') ?>">
-                                <i class="icon-menu menu-icon"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <ul class="sidebar-menu do-nicescrol">
-                <li class="sidebar-header">NAVIGATION</li>
-                <li>
-                    <a href="<?= base_url('konten/dashboard') ?>">
-                        <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('/product') ?>">
-                        <i class="zmdi zmdi-invert-colors"></i> <span>Product (icon)</span>
-                    </a>
-                </li>
+             <h4 class="weight-600 font-18 pb-10">Menu Dropdown Icon</h4>
+             <div class="sidebar-radio-group pb-10 mb-10">
+                 <div class="custom-control custom-radio custom-control-inline">
+                     <input
+                         type="radio"
+                         id="sidebaricon-1"
+                         name="menu-dropdown-icon"
+                         class="custom-control-input"
+                         value="icon-style-1"
+                         checked="" />
+                     <label class="custom-control-label" for="sidebaricon-1"><i class="fa fa-angle-down"></i></label>
+                 </div>
+                 <div class="custom-control custom-radio custom-control-inline">
+                     <input
+                         type="radio"
+                         id="sidebaricon-2"
+                         name="menu-dropdown-icon"
+                         class="custom-control-input"
+                         value="icon-style-2" />
+                     <label class="custom-control-label" for="sidebaricon-2"><i class="ion-plus-round"></i></label>
+                 </div>
+                 <div class="custom-control custom-radio custom-control-inline">
+                     <input
+                         type="radio"
+                         id="sidebaricon-3"
+                         name="menu-dropdown-icon"
+                         class="custom-control-input"
+                         value="icon-style-3" />
+                     <label class="custom-control-label" for="sidebaricon-3"><i class="fa fa-angle-double-right"></i></label>
+                 </div>
+             </div>
 
-                <li>
-                    <a href="forms.html">
-                        <i class="zmdi zmdi-format-list-bulleted"></i> <span>Ketegori Product</span>
-                    </a>
-                </li>
+             <h4 class="weight-600 font-18 pb-10">Menu List Icon</h4>
+             <div class="sidebar-radio-group pb-30 mb-10">
+                 <div class="custom-control custom-radio custom-control-inline">
+                     <input
+                         type="radio"
+                         id="sidebariconlist-1"
+                         name="menu-list-icon"
+                         class="custom-control-input"
+                         value="icon-list-style-1"
+                         checked="" />
+                     <label class="custom-control-label" for="sidebariconlist-1"><i class="ion-minus-round"></i></label>
+                 </div>
+                 <div class="custom-control custom-radio custom-control-inline">
+                     <input
+                         type="radio"
+                         id="sidebariconlist-2"
+                         name="menu-list-icon"
+                         class="custom-control-input"
+                         value="icon-list-style-2" />
+                     <label class="custom-control-label" for="sidebariconlist-2"><i class="fa fa-circle-o" aria-hidden="true"></i></label>
+                 </div>
+                 <div class="custom-control custom-radio custom-control-inline">
+                     <input
+                         type="radio"
+                         id="sidebariconlist-3"
+                         name="menu-list-icon"
+                         class="custom-control-input"
+                         value="icon-list-style-3" />
+                     <label class="custom-control-label" for="sidebariconlist-3"><i class="dw dw-check"></i></label>
+                 </div>
+                 <div class="custom-control custom-radio custom-control-inline">
+                     <input
+                         type="radio"
+                         id="sidebariconlist-4"
+                         name="menu-list-icon"
+                         class="custom-control-input"
+                         value="icon-list-style-4"
+                         checked="" />
+                     <label class="custom-control-label" for="sidebariconlist-4"><i class="icon-copy dw dw-next-2"></i></label>
+                 </div>
+                 <div class="custom-control custom-radio custom-control-inline">
+                     <input
+                         type="radio"
+                         id="sidebariconlist-5"
+                         name="menu-list-icon"
+                         class="custom-control-input"
+                         value="icon-list-style-5" />
+                     <label class="custom-control-label" for="sidebariconlist-5"><i class="dw dw-fast-forward-1"></i></label>
+                 </div>
+                 <div class="custom-control custom-radio custom-control-inline">
+                     <input
+                         type="radio"
+                         id="sidebariconlist-6"
+                         name="menu-list-icon"
+                         class="custom-control-input"
+                         value="icon-list-style-6" />
+                     <label class="custom-control-label" for="sidebariconlist-6"><i class="dw dw-next"></i></label>
+                 </div>
+             </div>
 
-                <li>
-                    <a href="tables.html">
-                        <i class="zmdi zmdi-grid"></i> <span>Gudang</span>
-                    </a>
-                </li>
+             <div class="reset-options pt-30 text-center">
+                 <button class="btn btn-danger" id="reset-settings">
+                     Reset Settings
+                 </button>
+             </div>
+         </div>
+     </div>
+ </div>
+ <div class="left-side-bar">
+     <div class="brand-logo">
+         <!-- <a href="index.html">
+                <img src="<?= base_url('assets/master/vendors/images/deskapp-logo.svg') ?>" alt="" class="dark-logo" />
+                <img
+                    src=" <?= base_url('assets/master/vendors/images/deskapp-logo-white.svg') ?>"
+                    alt=""
+                    class="light-logo" />
+            </a> -->
+         <!-- <div class="close-sidebar" data-toggle="left-sidebar-close">
+                <i class="ion-close-round"></i>
+            </div> -->
+     </div>
+     <div class="menu-block customscroll">
+         <div class="sidebar-menu">
+             <ul id="accordion-menu">
+                 <li class="dropdown">
+                     <a href="<?= base_url('konten/dashboard') ?>" class="dropdown-toggle no-arrow">
+                         <span class="micon bi bi-house"></span><span class="mtext">Home</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="#" class="dropdown-toggle">
+                         <span class="micon bi bi-calendar4-week"></span><span class="mtext">Informasi Product</span>
+                     </a>
+                     <ul class="submenu">
+                         <li><a href="<?= base_url('/product') ?>">Data Product</a></li>
+                         <li><a href="#">Kategori Product</a></li>
+                         <li><a href="#">Pergerakan Product</a></li>
+                     </ul>
+                 </li>
+                 <li>
+                     <a href="" class="dropdown-toggle no-arrow">
+                         <span class="micon bi bi-calendar4-week"></span><span class="mtext">Gudang</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="" class="dropdown-toggle no-arrow">
+                         <span class="micon bi bi-receipt-cutoff"></span><span class="mtext">Penjualan/Invoice</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="" class="dropdown-toggle no-arrow">
+                         <span class="micon bi bi-calendar4-week"></span><span class="mtext">Pelanggan</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="" class="dropdown-toggle no-arrow">
+                         <span class="micon fa fa-user-circle"></span><span class="mtext">Pengguna</span>
+                     </a>
+                 </li>
+                 <li>
+                     <div class="dropdown-divider"></div>
+                 </li>
 
-                <li>
-                    <a href="calendar.html">
-                        <i class="zmdi zmdi-calendar-check"></i> <span>Calendar</span>
-                        <small class="badge float-right badge-light">New</small>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="profile.html">
-                        <i class="zmdi zmdi-face"></i> <span>Pergerakan Product</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="login.html" target="_blank">
-                        <i class="zmdi zmdi-lock"></i> <span>Penjualan/Invoice</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="register.html" target="_blank">
-                        <i class="zmdi zmdi-account-circle"></i> <span>Pelanggan</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="register.html" target="_blank">
-                        <i class="zmdi zmdi-account-circle"></i> <span>Pengguna</span>
-                    </a>
-                </li>
-                <li class="sidebar-header">LABELS</li>
-                <li><a href="javaScript:void();"><i class="zmdi zmdi-coffee text-danger"></i> <span>Important</span></a></li>
-                <li><a href="javaScript:void();"><i class="zmdi zmdi-chart-donut text-success"></i> <span>Warning</span></a></li>
-                <li><a href="javaScript:void();"><i class="zmdi zmdi-share text-info"></i> <span>Information</span></a></li>
-
-            </ul>
-
-        </div>
-        <!--End sidebar-wrapper-->
+                 <li>
+                     <a href="<?= base_url('/logout') ?>" class="dropdown-toggle no-arrow">
+                         <span class="micon dw dw-logout"></span><span class="mtext">Logout</span>
+                     </a>
+                 </li>
+             </ul>
+         </div>
+     </div>
+ </div>
