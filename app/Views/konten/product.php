@@ -1,74 +1,79 @@
-<div class="clearfix"></div>
-<div class="content-wrapper">
-  <div class="container-fluid">
-    <div class="row mt-3">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Data Produk</h5>
-
-            <!-- Tombol Tambah -->
-            <button class="btn btn-success mb-3" onclick="openCreateProduct()">
-              <i class="icon-copy dw dw-add"></i> Tambah
-            </button>
-
-            <!-- Tabel Produk -->
-            <div class="table-responsive">
-              <table class="table table-striped table-bordered">
-                <thead>
-                  <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">SKU</th>
-                    <th scope="col">Kategori</th>
-                    <th scope="col">Unit</th>
-                    <th scope="col">Harga Beli</th>
-                    <th scope="col">Harga Jual</th>
-                    <th scope="col">Stok</th>
-                    <th scope="col">Gudang</th>
-                    <th scope="col">Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php if (!empty($products)): ?>
-                    <?php $no = 1; ?>
-                    <?php foreach ($products as $product): ?>
-                      <tr>
-                        <th scope="row"><?= $no++ ?></th>
-                        <td><?= htmlspecialchars($product['name']) ?></td>
-                        <td><?= htmlspecialchars($product['sku']) ?></td>
-                        <td><?= htmlspecialchars($product['category']) ?></td>
-                        <td><?= htmlspecialchars($product['unit']) ?></td>
-                        <td><?= htmlspecialchars($product['cost_price']) ?></td>
-                        <td><?= htmlspecialchars($product['selling_price']) ?></td>
-                        <td><?= htmlspecialchars($product['stock']) ?></td>
-                        <td><?= htmlspecialchars($product['warehouse']) ?></td>
-                        <td>
-                          <a href="javascript:void(0)" title="Edit" onclick="openEditModal(<?= $product['id'] ?>)">
-                            <i class="icon-copy dw dw-edit2"></i>
-                          </a>
-                          <a href="<?= base_url('product/delete/' . $product['id']) ?>"
-                            onclick="return confirm('Yakin ingin menghapus produk ini?')" title="Hapus">
-                            <i class="icon-copy dw dw-delete3 text-danger"></i>
-                          </a>
-                        </td>
-                      </tr>
-                    <?php endforeach; ?>
-                  <?php else: ?>
-                    <tr>
-                      <td colspan="10" class="text-center">Belum ada data produk.</td>
-                    </tr>
-                  <?php endif; ?>
-                </tbody>
-              </table>
-            </div>
-
+<div class="mobile-menu-overlay"></div>
+<div class="main-container">
+  <div class="pd-ltr-20 xs-pd-20-10">
+    <div class="min-height-200px">
+      <div class="pd-20 card-box mb-30">
+        <div class="clearfix mb-20">
+          <div class="pull-left">
+            <h4 class="text-blue h4">Data Produk</h4>
           </div>
+          <div class="pull-right">
+            <a
+              href="javascript:void(0);"
+              class="btn btn-primary btn-sm"
+              onclick="openCreateProduct()"
+              role="button">
+              <i class="fa fa-plus"></i> Tambah Produk
+            </a>
+          </div>
+
         </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">Nama</th>
+              <th scope="col">SKU</th>
+              <th scope="col">Kategori</th>
+              <th scope="col">Unit</th>
+              <th scope="col">Harga Beli</th>
+              <th scope="col">Harga Jual</th>
+              <th scope="col">Stok</th>
+              <th scope="col">Gudang</th>
+              <th scope="col">Create</th>
+              <th scope="col">Update</th>
+              <th scope="col">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php if (!empty($products)): ?>
+              <?php $no = 1; ?>
+              <?php foreach ($products as $product): ?>
+                <tr>
+                  <th scope="row"><?= $no++ ?></th>
+                  <td><?= htmlspecialchars($product['name']) ?></td>
+                  <td><?= htmlspecialchars($product['sku']) ?></td>
+                  <td><?= htmlspecialchars($product['category_id']) ?></td>
+                  <td><?= htmlspecialchars($product['unit']) ?></td>
+                  <td><?= 'Rp ' . number_format($product['cost_price'], 0, ',', '.') ?></td>
+                  <td><?= 'Rp ' . number_format($product['selling_price'], 0, ',', '.') ?></td>
+                  <td><?= htmlspecialchars($product['stock']) ?></td>
+                  <td><?= htmlspecialchars($product['warehouse_id']) ?></td>
+                  <td><?= htmlspecialchars($product['created_at']) ?></td>
+                  <td><?= htmlspecialchars($product['updated_at']) ?></td>
+                  <td>
+                    <a href="javascript:void(0)" title="Edit" onclick="openEditModal(<?= $product['id'] ?>)">
+                      <i class="icon-copy dw dw-edit2"></i>
+                    </a>
+                    <a href="<?= base_url('product/delete/' . $product['id']) ?>"
+                      onclick="return confirm('Yakin ingin menghapus produk ini?')" title="Hapus">
+                      <i class="icon-copy dw dw-delete"></i>
+                    </a>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
+            <?php else: ?>
+              <tr>
+                <td colspan="10" class="text-center">Belum ada data produk.</td>
+              </tr>
+            <?php endif; ?>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 </div>
+
 
 <!-- Modal Tambah/Edit Produk -->
 <div id="productModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
@@ -118,15 +123,20 @@
 
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="category" style="color: #000 !important;">Kategori <span class="text-danger">*</span></label>
-              <input
-                type="text"
+              <label for="category_id" style="color: #000 !important;">Kategori <span class="text-danger">*</span></label>
+              <select
                 class="form-control"
-                id="category"
-                name="category"
+                id="category_id"
+                name="category_id"
                 required
-                placeholder="Masukkan kategori"
                 style="background-color: #fff; color: #000 !important;">
+                <option value="">-- Pilih Kategori --</option>
+                <?php foreach ($category as $category): ?>
+                  <option value="<?= $category['id'] ?>">
+                    <?= $category['name'] ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>
             </div>
             <div class="form-group col-md-6">
               <label for="unit" style="color: #000 !important;">Unit <span class="text-danger">*</span></label>
@@ -143,10 +153,11 @@
 
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="cost_price" style="color: #000 !important;">Harga Beli <span class="text-danger">*</span></label>
+              <label for="cost_price" style="color: #000 !important;">
+                Harga Beli <span class="text-danger">*</span>
+              </label>
               <input
-                type="number"
-                step="0.01"
+                type="text"
                 class="form-control"
                 id="cost_price"
                 name="cost_price"
@@ -154,11 +165,13 @@
                 placeholder="Masukkan harga beli"
                 style="background-color: #fff; color: #000 !important;">
             </div>
+
             <div class="form-group col-md-6">
-              <label for="selling_price" style="color: #000 !important;">Harga Jual <span class="text-danger">*</span></label>
+              <label for="selling_price" style="color: #000 !important;">
+                Harga Jual <span class="text-danger">*</span>
+              </label>
               <input
-                type="number"
-                step="0.01"
+                type="text"
                 class="form-control"
                 id="selling_price"
                 name="selling_price"
@@ -181,19 +194,23 @@
                 style="background-color: #fff; color: #000 !important;">
             </div>
             <div class="form-group col-md-6">
-              <label for="warehouse" style="color: #000 !important;">Gudang <span class="text-danger">*</span></label>
-              <input
-                type="text"
+              <label for="warehouse_id" style="color: #000 !important;">Gudang <span class="text-danger">*</span></label>
+              <select
                 class="form-control"
-                id="warehouse"
-                name="warehouse"
+                id="warehouse_id"
+                name="warehouse_id"
                 required
-                placeholder="Masukkan lokasi gudang"
                 style="background-color: #fff; color: #000 !important;">
+                <option value="">-- Pilih Gudang --</option>
+                <?php foreach ($warehouse as $warehouse): ?>
+                  <option value="<?= $warehouse['id'] ?>">
+                    <?= $warehouse['name'] ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>
             </div>
           </div>
         </div>
-
         <div class="modal-footer bg-light">
           <button type="button" class="btn btn-secondary" onclick="closeModal()" style="color: #000 !important;">Tutup</button>
           <button type="submit" class="btn btn-primary">Simpan</button>
@@ -202,6 +219,7 @@
     </div>
   </div>
 </div>
+
 
 
 
@@ -227,12 +245,12 @@
         $('#productId').val(data.id);
         $('#name').val(data.name);
         $('#sku').val(data.sku);
-        $('#category').val(data.category);
+        $('#category_id').val(data.category_id);
         $('#unit').val(data.unit);
         $('#cost_price').val(data.cost_price);
         $('#selling_price').val(data.selling_price);
         $('#stock').val(data.stock);
-        $('#warehouse').val(data.warehouse);
+        $('#warehouse_id').val(data.warehouse_id);
         $('#productModal').modal('show');
       },
       error: function() {
@@ -240,4 +258,38 @@
       }
     });
   }
+
+  function formatRupiah(angka, prefix) {
+    let number_string = angka.replace(/[^,\d]/g, "").toString(),
+      split = number_string.split(","),
+      sisa = split[0].length % 3,
+      rupiah = split[0].substr(0, sisa),
+      ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+    if (ribuan) {
+      let separator = sisa ? "." : "";
+      rupiah += separator + ribuan.join(".");
+    }
+
+    rupiah = split[1] !== undefined ? rupiah + "," + split[1] : rupiah;
+    return prefix === undefined ? rupiah : (rupiah ? "Rp " + rupiah : "");
+  }
+
+  function setupRupiahInput(id) {
+    const input = document.getElementById(id);
+    input.addEventListener("keyup", function(e) {
+      this.value = formatRupiah(this.value, "Rp ");
+    });
+  }
+
+  setupRupiahInput("cost_price");
+  setupRupiahInput("selling_price");
+
+  document.getElementById("productForm").addEventListener("submit", function(e) {
+    const costInput = document.getElementById("cost_price");
+    const sellInput = document.getElementById("selling_price");
+
+    costInput.value = costInput.value.replace(/[^0-9]/g, "");
+    sellInput.value = sellInput.value.replace(/[^0-9]/g, "");
+  });
 </script>

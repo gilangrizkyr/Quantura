@@ -2,28 +2,28 @@
 
 namespace App\Controllers;
 
-use App\Models\CategoryModel;
+use App\Models\WarehouseModel;
 
-class Category extends BaseController
+class Warehouse extends BaseController
 {
-    protected $categorymodel;
+    protected $warehousetmodel;
 
 
     public function __construct()
     {
-        $this->categorymodel = new CategoryModel();
+        $this->warehousetmodel = new WarehouseModel();
     }
 
     // Tampilkan semua produk
     public function index()
     {
-        $data['category'] = $this->categorymodel->findAll();
-        $data['title'] = 'Quantura | Category';
+        $data['warehouse'] = $this->warehousetmodel->findAll();
+        $data['title'] = 'Quantura | warehouse';
 
         return view('content/header', $data)
             . view('content/navbar')
             . view('content/sidebar')
-            . view('konten/category', $data)
+            . view('konten/warehouse', $data)
             . view('content/footer');
     }
 
@@ -34,6 +34,7 @@ class Category extends BaseController
         $validation = \Config\Services::validation();
         $validation->setRules([
             'name' => 'required',
+            'location' => 'required',
         ]);
 
         if (!$validation->withRequest($this->request)->run()) {
@@ -43,41 +44,42 @@ class Category extends BaseController
         // Ambil data dari form
         $id = $this->request->getPost('id');
         $data = [
-            'name' => $this->request->getPost('name')
+            'name' => $this->request->getPost('name'),
+            'location' => $this->request->getPost('location')
         ];
 
         // Simpan atau update data
         if ($id) {
-            $this->categorymodel->update($id, $data);
+            $this->warehousetmodel->update($id, $data);
         } else {
-            $this->categorymodel->insert($data);
+            $this->warehousetmodel->insert($data);
         }
 
-        return redirect()->to('/category');
+        return redirect()->to('/warehouse');
     }
 
     // Hapus produk berdasarkan ID
     public function delete($id)
     {
-        $this->categorymodel->delete($id);
-        return redirect()->to('/category');
+        $this->warehousetmodel->delete($id);
+        return redirect()->to('/warehouse');
     }
 
     // Ambil data produk untuk keperluan edit
     public function edit($id)
     {
-        $category = $this->categorymodel->find($id);
-        return $this->response->setJSON($category);
+        $warehouse = $this->warehousetmodel->find($id);
+        return $this->response->setJSON($warehouse);
     }
 
     // Lihat detail produk (jika dibutuhkan)
     public function detail($id)
     {
-        $category = $this->categorymodel->find($id);
-        if ($category) {
-            return $this->response->setJSON($category);
+        $warehouse = $this->warehousetmodel->find($id);
+        if ($warehouse) {
+            return $this->response->setJSON($warehouse);
         } else {
-            return $this->response->setStatusCode(404)->setJSON(['message' => 'Category not found']);
+            return $this->response->setStatusCode(404)->setJSON(['message' => 'warehouse not found']);
         }
     }
 }

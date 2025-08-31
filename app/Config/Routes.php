@@ -20,11 +20,30 @@ $routes->post('chat/ask', 'Chat::ask');
 $routes->get('/', 'dashboard::index');
 $routes->get('/konten/dashboard', 'Dashboard::dashboard');
 
-$routes->get('/', 'Product::index'); // Halaman utama menampilkan produk
-$routes->get('/product', 'Product::index'); // Alias /product
-
-// CRUD Routing
+$routes->get('/', 'Product::index');
+$routes->get('/product', 'Product::index');
 $routes->post('/product/save', 'Product::save');
 $routes->get('/product/edit/(:num)', 'Product::edit/$1');
 $routes->get('/product/detail/(:num)', 'Product::detail/$1');
 $routes->get('/product/delete/(:num)', 'Product::delete/$1');
+
+$routes->get('/', 'Category::index');
+$routes->get('/category', 'Category::index');
+$routes->post('/category/save', 'Category::save');
+$routes->get('/category/edit/(:num)', 'Category::edit/$1');
+$routes->get('/category/detail/(:num)', 'Category::detail/$1');
+$routes->get('/category/delete/(:num)', 'Category::delete/$1');
+
+$routes->get('/', 'Warehouse::index');
+$routes->get('/warehouse', 'Warehouse::index');
+$routes->post('/warehouse/save', 'Warehouse::save');
+$routes->get('/warehouse/edit/(:num)', 'Warehouse::edit/$1');
+$routes->get('/warehouse/detail/(:num)', 'Warehouse::detail/$1');
+$routes->get('/warehouse/delete/(:num)', 'Warehouse::delete/$1');
+
+$routes->get('/', 'Users::index');
+$routes->get('/users', 'Users::index');
+$routes->post('/users/save', 'Users::save');
+$routes->get('/users/edit/(:num)', 'Users::edit/$1');
+$routes->get('/users/detail/(:num)', 'Users::detail/$1');
+$routes->get('/users/delete/(:num)', 'Users::delete/$1');

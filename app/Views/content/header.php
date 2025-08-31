@@ -4,7 +4,7 @@
 <head>
     <!-- Basic Page Info -->
     <meta charset="utf-8" />
-    <title></title>
+    <title><?= esc($title) ?></title>
 
     <!-- Site favicon -->
     <link
@@ -46,6 +46,8 @@
         type="text/css"
         href="<?= base_url('assets/master/src/plugins/datatables/css/responsive.bootstrap4.min.css') ?>" />
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/master/vendors/styles/style.css') ?>" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
+
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script

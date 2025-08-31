@@ -13,17 +13,15 @@ class UserModel extends Model
         'username',
         'password',
         'role',
-        'created_at'
     ];
 
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';
-    protected $updatedField  = '';
 
     protected $returnType = 'array';
 
-    public function getUserByUsername(string $username)
-    {
-        return $this->where('username', $username)->first();
-    }
+    // public function getUserByUsername(string $username)
+    // {
+    //     return $this->where('username', $username)->first();
+    // }
 }

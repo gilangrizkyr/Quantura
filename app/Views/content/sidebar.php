@@ -157,12 +157,12 @@
                      </a>
                      <ul class="submenu">
                          <li><a href="<?= base_url('/product') ?>">Data Product</a></li>
-                         <li><a href="#">Kategori Product</a></li>
+                         <li><a href="<?= base_url('/category') ?>">Kategori Product</a></li>
                          <li><a href="#">Pergerakan Product</a></li>
                      </ul>
                  </li>
                  <li>
-                     <a href="" class="dropdown-toggle no-arrow">
+                     <a href="<?=base_url('/warehouse') ?>" class="dropdown-toggle no-arrow">
                          <span class="micon bi bi-calendar4-week"></span><span class="mtext">Gudang</span>
                      </a>
                  </li>
@@ -177,7 +177,7 @@
                      </a>
                  </li>
                  <li>
-                     <a href="" class="dropdown-toggle no-arrow">
+                     <a href="<?=base_url('/users') ?>" class="dropdown-toggle no-arrow">
                          <span class="micon fa fa-user-circle"></span><span class="mtext">Pengguna</span>
                      </a>
                  </li>

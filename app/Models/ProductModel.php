@@ -12,16 +12,25 @@ class ProductModel extends Model
     protected $allowedFields = [
         'name',
         'sku',
-        'category',         // foreign key to categories
+        'category_id',         // foreign key to categories
         'unit',
         'cost_price',
         'selling_price',
         'stock',
-        'warehouse',        // foreign key to warehouse
+        'warehouse_id',        // foreign key to warehouse
     ];
 
     // Auto timestamps
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
+
+    public function getProductsWithCategory()
+    {
+        return $this->db->table('products')
+            ->select('products.*, categories.name as category_name')
+            ->join('categories', 'products.category_id = categories.id')
+            ->get()
+            ->getResultArray();
+    }
 }
