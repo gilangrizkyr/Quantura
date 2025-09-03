@@ -47,3 +47,6 @@ $routes->post('/users/save', 'Users::save');
 $routes->get('/users/edit/(:num)', 'Users::edit/$1');
 $routes->get('/users/detail/(:num)', 'Users::detail/$1');
 $routes->get('/users/delete/(:num)', 'Users::delete/$1');
+
+
+

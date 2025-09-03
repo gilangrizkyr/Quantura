@@ -83,6 +83,7 @@
             f.parentNode.insertBefore(j, f);
         })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- End Google Tag Manager -->
 </head>
 
@@ -145,24 +146,26 @@
         </div>
         <div class="header-right">
             <div class="user-info-dropdown">
+                <?php
+                $username = session()->get('username');
+                $profileImage = session()->get('profile_image');
+                $defaultImage = base_url('');
+                $imagePath = $profileImage ? base_url('upload/' . $profileImage) : $defaultImage;
+                ?>
+
                 <div class="dropdown">
-                    <a
-                        class="dropdown-toggle"
-                        href="#"
-                        role="button"
-                        data-toggle="dropdown">
+                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                         <span class="user-icon">
-                            <img src="" alt="" />
+                            <img src="<?= $imagePath ?>" alt="Foto Profil" style="width: 55px; height: 55px; object-fit: cover; border-radius: 500%;" />
                         </span>
-                        <span class="user-name">Ross C. Lopez</span>
+                        <span class="user-name"><?= esc($username) ?></span>
                     </a>
-                    <div
-                        class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                         <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-                        <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
                         <a class="dropdown-item" href="<?= base_url('/logout') ?>"><i class="dw dw-logout"></i> Log Out</a>
                     </div>
                 </div>
+
             </div>
             <div class="dashboard-setting user-notification">
                 <div class="dropdown">

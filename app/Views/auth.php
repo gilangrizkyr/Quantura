@@ -38,6 +38,10 @@
         type="text/css"
         href="<?= base_url('assets/master/vendors/styles/icon-font.min.css') ?>" />
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/master/vendors/styles/style.css') ?>" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
@@ -73,22 +77,40 @@
             f.parentNode.insertBefore(j, f);
         })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- End Google Tag Manager -->
 </head>
 
 <body class="login-page">
-    <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
+    <?php if (session()->getFlashdata('error')): ?>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: '<?= session()->getFlashdata('error') ?>',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                });
+            });
+        </script>
+    <?php endif; ?>
+
+
+    <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center position-relative">
+        <!-- Gambar di belakang box login -->
+        <img src="<?= base_url('assets/master/vendors/images/login-page-img.png') ?>" alt="Background Image" class="bg-image" />
+
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6 col-lg-7">
-                    <img src="<?= base_url('assets/master/vendors/images/login-page-img.png') ?>" alt="" />
-                </div>
+            <div class="row align-items-center justify-content-center">
                 <div class="col-md-6 col-lg-5">
-                    <div class="login-box bg-white box-shadow border-radius-10">
+                    <div class="login-box bg-white box-shadow border-radius-10 position-relative">
                         <div class="login-title">
                             <h2 class="text-center text-primary">Login</h2>
                         </div>
                         <form action="<?= base_url('auth/login') ?>" method="post" novalidate>
+                            <?= csrf_field() ?>
                             <div class="input-group custom">
                                 <input
                                     type="text"
@@ -109,9 +131,12 @@
                                     class="form-control form-control-lg"
                                     placeholder="**********" />
                                 <div class="input-group-append custom">
-                                    <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
+                                    <span class="input-group-text">
+                                        <i class="fas fa-eye toggle-password" toggle="#password" style="cursor:pointer;"></i>
+                                    </span>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="input-group mb-0">
@@ -125,11 +150,42 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .login-wrap {
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .bg-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80%;
+            max-width: 700px;
+            transform: translate(-50%, -50%);
+            opacity: 0.7;
+            z-index: 0;
+            user-select: none;
+            pointer-events: none;
+            /* biar gak klik gambar */
+        }
+
+        .login-box {
+            position: relative;
+            z-index: 1;
+            /* supaya di atas gambar */
+        }
+    </style>
+
     <!-- js -->
     <script src="<?= base_url('assets/master/vendors/scripts/core.js') ?>"></script>
     <script src="<?= base_url('assets/master/vendors/scripts/script.min.js') ?>"></script>
     <script src="<?= base_url('assets/master/vendors/scripts/process.js') ?>"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script src="<?= base_url('assets/master/vendors/scripts/layout-settings.js') ?>"></script>
+
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
@@ -137,6 +193,18 @@
             width="0"
             style="display: none; visibility: hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    <script>
+        $(".toggle-password").click(function() {
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            let input = $($(this).attr("toggle"));
+            if (input.attr("type") === "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+    </script>
+
 </body>
 
 </html>

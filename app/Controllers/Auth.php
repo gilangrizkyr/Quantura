@@ -9,7 +9,7 @@ class Auth extends BaseController
     public function index()
     {
         helper(['form']);
-        echo view('auth', ['title' => 'Quantura | Login']);
+        return view('auth', ['title' => 'Quantura | Login']);
     }
 
     public function login()
@@ -37,18 +37,28 @@ class Auth extends BaseController
 
         if ($user) {
             if (password_verify($password, $user['password'])) {
+                // Regenerate session ID
+                session()->regenerate(true);
+
                 $session->set([
-                    'user_id'   => $user['id'],
-                    'username'  => $user['username'],
-                    'role'      => $user['role'],
-                    'logged_in' => true,
+                    'user_id'       => $user['id'],
+                    'username'      => $user['username'],
+                    'role'          => $user['role'],
+                    'profile_image' => $user['profile_image'],
+                    'logged_in'     => true,
                 ]);
+
+                log_message('info', "User '{$username}' logged in successfully.");
                 return redirect()->to('/konten/dashboard');
             } else {
+                log_message('error', "Login failed: wrong password for '{$username}'");
+                sleep(1); // Delay to prevent brute force
                 $session->setFlashdata('error', 'Password salah');
                 return redirect()->to('/login')->withInput();
             }
         } else {
+            log_message('error', "Login failed: username '{$username}' not found");
+            sleep(1);
             $session->setFlashdata('error', 'Username tidak ditemukan');
             return redirect()->to('/login')->withInput();
         }

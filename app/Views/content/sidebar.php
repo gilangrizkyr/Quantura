@@ -132,16 +132,12 @@
  </div>
  <div class="left-side-bar">
      <div class="brand-logo">
-         <!-- <a href="index.html">
-                <img src="<?= base_url('assets/master/vendors/images/deskapp-logo.svg') ?>" alt="" class="dark-logo" />
-                <img
-                    src=" <?= base_url('assets/master/vendors/images/deskapp-logo-white.svg') ?>"
-                    alt=""
-                    class="light-logo" />
-            </a> -->
-         <!-- <div class="close-sidebar" data-toggle="left-sidebar-close">
-                <i class="ion-close-round"></i>
-            </div> -->
+         <a href="#">
+             <img src="<?= base_url('img/quantura.png') ?>" alt="Logo" class="dark-logo" width="70" />
+         </a>
+         <div class="close-sidebar" data-toggle="left-sidebar-close">
+             <i class="ion-close-round"></i>
+         </div>
      </div>
      <div class="menu-block customscroll">
          <div class="sidebar-menu">
@@ -162,7 +158,7 @@
                      </ul>
                  </li>
                  <li>
-                     <a href="<?=base_url('/warehouse') ?>" class="dropdown-toggle no-arrow">
+                     <a href="<?= base_url('/warehouse') ?>" class="dropdown-toggle no-arrow">
                          <span class="micon bi bi-calendar4-week"></span><span class="mtext">Gudang</span>
                      </a>
                  </li>
@@ -177,7 +173,7 @@
                      </a>
                  </li>
                  <li>
-                     <a href="<?=base_url('/users') ?>" class="dropdown-toggle no-arrow">
+                     <a href="<?= base_url('/users') ?>" class="dropdown-toggle no-arrow">
                          <span class="micon fa fa-user-circle"></span><span class="mtext">Pengguna</span>
                      </a>
                  </li>

@@ -8,6 +8,8 @@
 <script src="<?= base_url('assets/master/src/plugins/datatables/js/dataTables.bootstrap4.min.js') ?>"></script>
 <script src="<?= base_url('assets/master/src/plugins/datatables/js/dataTables.responsive.min.js') ?>"></script>
 <script src="<?= base_url('assets/master/src/plugins/datatables/js/responsive.bootstrap4.min.js') ?>"></script>
+
+
 <!-- <script src="<?= base_url('assets/master/vendors/scripts/dashboard3.js') ?>"></script> -->
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe
