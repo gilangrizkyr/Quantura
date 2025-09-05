@@ -52,7 +52,7 @@ class Auth extends BaseController
                 return redirect()->to('/konten/dashboard');
             } else {
                 log_message('error', "Login failed: wrong password for '{$username}'");
-                sleep(1); // Delay to prevent brute force
+                sleep(1);
                 $session->setFlashdata('error', 'Password salah');
                 return redirect()->to('/login')->withInput();
             }

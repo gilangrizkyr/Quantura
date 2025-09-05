@@ -10,13 +10,13 @@ class Product extends BaseController
 {
     protected $productmodel;
     protected $categorymodel;
-    protected $warehousetmodel;
+    protected $warehousemodel;
 
     public function __construct()
     {
         $this->productmodel = new ProductModel();
         $this->categorymodel = new CategoryModel();
-        $this->warehousetmodel = new WarehouseModel();
+        $this->warehousemodel = new WarehouseModel();
     }
 
     // Tampilkan semua produk
@@ -24,10 +24,9 @@ class Product extends BaseController
     {
         $data['products'] = $this->productmodel->findAll();
         $data['category'] = $this->categorymodel->findAll();
-        // $data['category'] = $this->productmodel->getProductsWithCategory();
-        $data['warehouse'] = $this->warehousetmodel->findAll();
+        $data['warehouse'] = $this->warehousemodel->findAll();
 
-        $data['title'] = 'Quantura | Product';
+        $data['title'] = 'Quantura | Produk';
 
         return view('content/header', $data)
             . view('content/navbar')

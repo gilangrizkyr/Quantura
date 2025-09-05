@@ -20,10 +20,14 @@ class Pergerakan extends BaseController
     public function index()
     {
         $data['pergerakan'] = $this->pergerakanmodel->findAll();
-        $data['product'] = $this->productmodel->findAll();
+        $data['products'] = $this->productmodel->findAll();
+        $data['roles'] = $this->pergerakanmodel->getEnumPergerakan('stock_movements', 'type');
+        $model = new
+            PergerakanModel();
+        $data['siswa'] = $model->getPergerakan();
 
 
-        $data['title'] = 'Quantura | Pergerakan Product';
+        $data['title'] = 'Quantura | Pergerakan Produk';
 
         return view('content/header', $data)
             . view('content/navbar')
@@ -50,14 +54,23 @@ class Pergerakan extends BaseController
 
         // Ambil data dari form
         $id = $this->request->getPost('id');
+        $product_id = $this->request->getPost('product_id');
+
+        // Cek apakah product_id ada di tabel products
+        $product = $this->productmodel->find($product_id);
+        if (!$product) {
+            return redirect()->back()->withInput()->with('error', 'Produk dengan ID ' . $product_id . ' tidak ditemukan!');
+        }
+
         $data = [
-            'product_id' => $this->request->getPost('product_id'),
+            'product_id' => $product_id,
             'type' => $this->request->getPost('type'),
             'quantity' => $this->request->getPost('quantity'),
-            'reference' => $this->request->getPost('reference'),
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'reference' => $this->request->getPost('reference')
+            // 'created_at' => date('Y-m-d H:i:s'),
+            // 'updated_at' => date('Y-m-d H:i:s')
         ];
+
 
         // Simpan atau update data
         if ($id) {
@@ -72,7 +85,7 @@ class Pergerakan extends BaseController
     // Hapus produk berdasarkan ID
     public function delete($id)
     {
-        $this->productmodel->delete($id);
+        $this->pergerakanmodel->delete($id);
         return redirect()->to('/pergerakan');
     }
 

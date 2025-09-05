@@ -12,12 +12,12 @@ class ProductModel extends Model
     protected $allowedFields = [
         'name',
         'sku',
-        'category_id',         // foreign key to categories
+        'category_id',
         'unit',
         'cost_price',
         'selling_price',
         'stock',
-        'warehouse_id',        // foreign key to warehouse
+        'warehouse_id',
     ];
 
     // Auto timestamps

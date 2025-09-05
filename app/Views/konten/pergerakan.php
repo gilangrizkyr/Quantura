@@ -5,7 +5,7 @@
             <div class="pd-20 card-box mb-30">
                 <div class="clearfix mb-20">
                     <div class="pull-left">
-                        <h4 class="text-blue h4">Data Produk</h4>
+                        <h4 class="text-blue h4">Pergerakan Produk</h4>
                     </div>
                     <div class="pull-right">
                         <a
@@ -48,7 +48,7 @@
                                             <i class="icon-copy dw dw-edit2"></i>
                                         </a>
                                         <a href="<?= base_url('pergerakan/delete/' . $pergerakan['id']) ?>"
-                                            onclick="return confirm('Yakin ingin menghapus produk ini?')" title="Hapus">
+                                            onclick="return confirm('Yakin ingin menghapus data ini?')" title="Hapus">
                                             <i class="icon-copy dw dw-delete"></i>
                                         </a>
                                     </td>
@@ -56,7 +56,7 @@
                             <?php endforeach; ?>
                         <?php else: ?>
                             <tr>
-                                <td colspan="10" class="text-center">Belum ada data produk.</td>
+                                <td colspan="10" class="text-center">Belum ada data pergerakan.</td>
                             </tr>
                         <?php endif; ?>
                     </tbody>
@@ -67,7 +67,7 @@
 </div>
 
 
-<!-- Modal Tambah/Edit Produk -->
+<!-- Pop Up -->
 <div id="pergerakanModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content" style="background-color: #f8f9fa; color: #000 !important;">
@@ -84,10 +84,9 @@
                 </button>
             </div>
 
-            <form id="productForm" method="POST" action="<?= base_url('pergerakan/save') ?>">
+            <form id="pergerakanForm" method="POST" action="<?= base_url('pergerakan/save') ?>">
                 <div class="modal-body">
                     <input type="hidden" id="pergerakanId" name="id">
-
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="product_id" style="color: #000 !important;">Pilih Produk <span class="text-danger">*</span></label>
@@ -97,19 +96,23 @@
                                 id="product_id"
                                 name="product_id"
                                 required
-                                placeholder="Pilih Produk"
+                                placeholder="Cari Produk"
                                 style="background-color: #fff; color: #000 !important;">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="type" style="color: #000 !important;">Tipe <span class="text-danger">*</span></label>
-                            <input
-                                type="text"
+                            <select
                                 class="form-control"
                                 id="type"
                                 name="type"
                                 required
-                                placeholder="Pilih Tipe"
                                 style="background-color: #fff; color: #000 !important;">
+                                <option value="">-- Pilih Tipe --</option>
+                                <?php foreach ($roles as $role): ?>
+                                    <option value="<?= $role ?>"><?= ucfirst($role) ?></option>
+                                <?php endforeach; ?>
+                            </select>
+
                         </div>
                     </div>
                     <div class="form-row">
@@ -127,14 +130,14 @@
                                 style="background-color: #fff; color: #000 !important;">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="quantity" style="color: #000 !important;">Quantity <span class="text-danger">*</span></label>
+                            <label for="quantity" style="color: #000 !important;">Jumlah<span class="text-danger">*</span></label>
                             <input
-                                type="text"
+                                type="number"
                                 class="form-control"
                                 id="quantity"
                                 name="quantity"
                                 required
-                                placeholder="Masukkan Quantity"
+                                placeholder="Masukkan Jumlah"
                                 style="background-color: #fff; color: #000 !important;">
                         </div>
                     </div>
@@ -155,7 +158,7 @@
 <script>
     function openCreatePergerakan() {
         $('#modalTitle').text('Tambah Data');
-        $('#productForm')[0].reset();
+        $('#pergerakanForm')[0].reset();
         $('#pergerakanId').val('');
         $('#pergerakanModal').modal('show');
     }

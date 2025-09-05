@@ -23,12 +23,38 @@ class PergerakanModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 
-    public function getProductsWithCategory()
+    public function getPergerakan()
     {
         return $this->db->table('stock_movements')
-            ->select('stock_movements.*, product.name as product_name')
-            ->join('products', 'stock_movements.product_id = product_id')
+            ->select('stock_movements.*, products.name as product_name')
+            ->join('products AS products', 'products.name = stock_movements.product_id')
             ->get()
             ->getResultArray();
+    }
+
+    public function getEnumPergerakan($table, $column)
+    {
+        $query = $this->db->query("
+        SELECT COLUMN_TYPE 
+        FROM information_schema.COLUMNS 
+        WHERE TABLE_SCHEMA = 'quantura'
+          AND TABLE_NAME = 'stock_movements'
+          AND COLUMN_NAME = 'type';
+    ", [$table, $column]);
+
+        $row = $query->getRow();
+
+        if (!$row) return [];
+
+        // Extract enum values dari string enum('admin','kasir',...)
+        $type = $row->COLUMN_TYPE;
+
+        preg_match("/^enum\(\'(.*)\'\)$/", $type, $matches);
+
+        if (!isset($matches[1])) return [];
+
+        $values = explode("','", $matches[1]);
+
+        return $values;
     }
 }
