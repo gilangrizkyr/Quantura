@@ -154,7 +154,7 @@
                      <ul class="submenu">
                          <li><a href="<?= base_url('/product') ?>">Data Product</a></li>
                          <li><a href="<?= base_url('/category') ?>">Kategori Product</a></li>
-                         <li><a href="#">Pergerakan Product</a></li>
+                         <li><a href="<?=base_url('/pergerakan') ?>">Pergerakan Product</a></li>
                      </ul>
                  </li>
                  <li>
