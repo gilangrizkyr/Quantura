@@ -33,7 +33,7 @@ class Chat extends BaseController
 
     private function askAI($prompt)
     {
-        $apiKey = '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'; // API Model Ai
+        $apiKey = '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'; // API Model Ai
         $model = 'openai/gpt-3.5-turbo';
 
         $url = 'https://openrouter.ai/api/v1/chat/completions';

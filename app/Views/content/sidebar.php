@@ -168,7 +168,7 @@
                      </a>
                  </li>
                  <li>
-                     <a href="" class="dropdown-toggle no-arrow">
+                     <a href="<?=base_url('/customers'); ?>" class="dropdown-toggle no-arrow">
                          <span class="micon bi bi-calendar4-week"></span><span class="mtext">Pelanggan</span>
                      </a>
                  </li>

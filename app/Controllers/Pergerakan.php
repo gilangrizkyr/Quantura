@@ -22,8 +22,7 @@ class Pergerakan extends BaseController
         $data['pergerakan'] = $this->pergerakanmodel->findAll();
         $data['products'] = $this->productmodel->findAll();
         $data['roles'] = $this->pergerakanmodel->getEnumPergerakan('stock_movements', 'type');
-        $model = new
-            PergerakanModel();
+        $model = new PergerakanModel();
         $data['siswa'] = $model->getPergerakan();
 
 

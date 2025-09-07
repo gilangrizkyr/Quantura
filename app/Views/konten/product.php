@@ -275,12 +275,24 @@
     return prefix === undefined ? rupiah : (rupiah ? "Rp " + rupiah : "");
   }
 
+  // function setupRupiahInput(id) {
+  //   const input = document.getElementById(id);
+  //   input.addEventListener("keyup", function(e) {
+  //     this.value = formatRupiah(this.value, "Rp ");
+  //   });
+  // }
+
   function setupRupiahInput(id) {
     const input = document.getElementById(id);
     input.addEventListener("keyup", function(e) {
-      this.value = formatRupiah(this.value, "Rp ");
+      let unformatted = this.value.replace(/[^\d,]/g, "");
+      let formatted = formatRupiah(unformatted, "Rp ");
+      if (this.value !== formatted) {
+        this.value = formatted;
+      }
     });
   }
+
 
   setupRupiahInput("cost_price");
   setupRupiahInput("selling_price");
@@ -289,7 +301,7 @@
     const costInput = document.getElementById("cost_price");
     const sellInput = document.getElementById("selling_price");
 
-    costInput.value = costInput.value.replace(/[^0-9]/g, "");
-    sellInput.value = sellInput.value.replace(/[^0-9]/g, "");
+    costInput.value = costInput.value.replace(/[^\d]/g, "");
+    sellInput.value = sellInput.value.replace(/[^\d]/g, "");
   });
 </script>

@@ -33,4 +33,13 @@ class ProductModel extends Model
             ->get()
             ->getResultArray();
     }
+
+    // public function getProduct()
+    // {
+    //     return $this->db->table('stock_movements')
+    //         ->select('stock_movements.*, products.name as product_name')
+    //         ->join('products AS products', 'products.name = stock_movements.product_id')
+    //         ->get()
+    //         ->getResultArray();
+    // }
 }

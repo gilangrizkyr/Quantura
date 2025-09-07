@@ -48,6 +48,14 @@ $routes->get('/warehouse/edit/(:num)', 'Warehouse::edit/$1');
 $routes->get('/warehouse/detail/(:num)', 'Warehouse::detail/$1');
 $routes->get('/warehouse/delete/(:num)', 'Warehouse::delete/$1');
 
+$routes->get('/', 'Customers::index');
+$routes->get('/customers', 'Customers::index');
+$routes->post('/customers/save', 'Customers::save');
+$routes->get('/customers/edit/(:num)', 'Customers::edit/$1');
+$routes->get('/customers/detail/(:num)', 'Customers::detail/$1');
+$routes->get('/customers/delete/(:num)', 'Customers::delete/$1');
+
+
 $routes->get('/', 'Users::index');
 $routes->get('/users', 'Users::index');
 $routes->post('/users/save', 'Users::save');
