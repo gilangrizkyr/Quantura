@@ -20,19 +20,30 @@ class ProductModel extends Model
         'warehouse_id',
     ];
 
-    // Auto timestamps
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 
-    public function getProductsWithCategory()
+    // public function getProductsWithCategory()
+    // {
+    //     return $this->db->table('products')
+    //         ->select('products.*, categories.name as category_name')
+    //         ->join('categories', 'products.category_id = categories.id')
+    //         ->get()
+    //         ->getResultArray();
+    // }
+
+    public function getProductsWithCategoryAndWarehouse()
     {
         return $this->db->table('products')
-            ->select('products.*, categories.name as category_name')
-            ->join('categories', 'products.category_id = categories.id')
+            ->select('products.*, categories.name as category_name, warehouses.name as warehouse_name')
+            ->join('categories', 'products.category_id = categories.id', 'left')
+            ->join('warehouses', 'products.warehouse_id = warehouses.id', 'left')
             ->get()
             ->getResultArray();
     }
+
+
 
     // public function getProduct()
     // {

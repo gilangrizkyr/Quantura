@@ -37,7 +37,7 @@
                             <?php foreach ($pergerakan as $pergerakan): ?>
                                 <tr>
                                     <th scope="row"><?= $no++ ?></th>
-                                    <td><?= htmlspecialchars($pergerakan['product_id']) ?></td>
+                                    <td><?= htmlspecialchars($pergerakan['product_name']) ?></td>
                                     <td><?= htmlspecialchars($pergerakan['type']) ?></td>
                                     <td><?= htmlspecialchars($pergerakan['quantity']) ?></td>
                                     <td><?= htmlspecialchars($pergerakan['reference']) ?></td>
@@ -67,7 +67,7 @@
 </div>
 
 
-<!-- Pop Up -->
+<!-- Modal Pop Up -->
 <div id="pergerakanModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content" style="background-color: #f8f9fa; color: #000 !important;">
@@ -87,18 +87,22 @@
             <form id="pergerakanForm" method="POST" action="<?= base_url('pergerakan/save') ?>">
                 <div class="modal-body">
                     <input type="hidden" id="pergerakanId" name="id">
+
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="product_id" style="color: #000 !important;">Pilih Produk <span class="text-danger">*</span></label>
+                            <label for="product_name" style="color: #000 !important;">Pilih Produk <span class="text-danger">*</span></label>
                             <input
                                 type="text"
                                 class="form-control"
-                                id="product_id"
-                                name="product_id"
-                                required
+                                id="product_name"
                                 placeholder="Cari Produk"
+                                required
+                                autocomplete="off"
                                 style="background-color: #fff; color: #000 !important;">
+                            <!-- Hidden input untuk product_id -->
+                            <input type="hidden" id="product_id" name="product_id">
                         </div>
+
                         <div class="form-group col-md-6">
                             <label for="type" style="color: #000 !important;">Tipe <span class="text-danger">*</span></label>
                             <select
@@ -112,9 +116,9 @@
                                     <option value="<?= $role ?>"><?= ucfirst($role) ?></option>
                                 <?php endforeach; ?>
                             </select>
-
                         </div>
                     </div>
+
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="reference" style="color: #000 !important;">
@@ -129,6 +133,7 @@
                                 placeholder="Referensi"
                                 style="background-color: #fff; color: #000 !important;">
                         </div>
+
                         <div class="form-group col-md-6">
                             <label for="quantity" style="color: #000 !important;">Jumlah<span class="text-danger">*</span></label>
                             <input
@@ -142,6 +147,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="modal-footer bg-light">
                     <button type="button" class="btn btn-secondary" onclick="closeModal()" style="color: #000 !important;">Tutup</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
@@ -152,14 +158,15 @@
 </div>
 
 
-
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 <!-- JavaScript -->
 <script>
     function openCreatePergerakan() {
         $('#modalTitle').text('Tambah Data');
         $('#pergerakanForm')[0].reset();
         $('#pergerakanId').val('');
+        $('#product_id').val(''); // reset hidden product id
         $('#pergerakanModal').modal('show');
     }
 
@@ -174,7 +181,12 @@
             success: function(data) {
                 $('#modalTitle').text('Edit Data');
                 $('#pergerakanId').val(data.id);
-                $('#product_id').val(data.product_id);
+
+                // Set nama produk di input text autocomplete
+                $('#product_name').val(data.product_name || '');
+                // Set id produk di hidden input
+                $('#product_id').val(data.product_id || '');
+
                 $('#type').val(data.type);
                 $('#quantity').val(data.quantity);
                 $('#reference').val(data.reference);
@@ -186,37 +198,32 @@
         });
     }
 
-    // function formatRupiah(angka, prefix) {
-    //     let number_string = angka.replace(/[^,\d]/g, "").toString(),
-    //         split = number_string.split(","),
-    //         sisa = split[0].length % 3,
-    //         rupiah = split[0].substr(0, sisa),
-    //         ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+    $(function() {
+        $("#product_name").autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                    url: "<?= base_url('pergerakan/searchProduct') ?>",
+                    dataType: "json",
+                    data: {
+                        term: request.term
+                    },
+                    success: function(data) {
+                        response(data); // ini data JSON yang kamu kirim itu
+                    }
+                });
+            },
+            minLength: 2,
+            select: function(event, ui) {
+                $("#product_name").val(ui.item.label); // tampilkan nama produk di input
+                $("#product_id").val(ui.item.id); // simpan id produk ke hidden input
+                return false;
+            }
+        });
 
-    //     if (ribuan) {
-    //         let separator = sisa ? "." : "";
-    //         rupiah += separator + ribuan.join(".");
-    //     }
+    });
 
-    //     rupiah = split[1] !== undefined ? rupiah + "," + split[1] : rupiah;
-    //     return prefix === undefined ? rupiah : (rupiah ? "Rp " + rupiah : "");
-    // }
-
-    // function setupRupiahInput(id) {
-    //     const input = document.getElementById(id);
-    //     input.addEventListener("keyup", function(e) {
-    //         this.value = formatRupiah(this.value, "Rp ");
-    //     });
-    // }
-
-    // setupRupiahInput("cost_price");
-    // setupRupiahInput("selling_price");
-
-    // document.getElementById("productForm").addEventListener("submit", function(e) {
-    //     const costInput = document.getElementById("cost_price");
-    //     const sellInput = document.getElementById("selling_price");
-
-    //     costInput.value = costInput.value.replace(/[^0-9]/g, "");
-    //     sellInput.value = sellInput.value.replace(/[^0-9]/g, "");
-    // });
+    // Optional: Clear hidden product_id jika user mengubah input manual dan tidak memilih autocomplete
+    $('#product_name').on('input', function() {
+        $('#product_id').val('');
+    });
 </script>

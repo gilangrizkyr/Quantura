@@ -154,7 +154,7 @@
                      <ul class="submenu">
                          <li><a href="<?= base_url('/product') ?>">Data Product</a></li>
                          <li><a href="<?= base_url('/category') ?>">Kategori Product</a></li>
-                         <li><a href="<?=base_url('/pergerakan') ?>">Pergerakan Product</a></li>
+                         <li><a href="<?= base_url('/pergerakan') ?>">Pergerakan Product</a></li>
                      </ul>
                  </li>
                  <li>
@@ -163,12 +163,12 @@
                      </a>
                  </li>
                  <li>
-                     <a href="" class="dropdown-toggle no-arrow">
+                     <a href="<?= base_url('/invoice') ?>" class="dropdown-toggle no-arrow">
                          <span class="micon bi bi-receipt-cutoff"></span><span class="mtext">Penjualan/Invoice</span>
                      </a>
                  </li>
                  <li>
-                     <a href="<?=base_url('/customers'); ?>" class="dropdown-toggle no-arrow">
+                     <a href="<?= base_url('/customers'); ?>" class="dropdown-toggle no-arrow">
                          <span class="micon bi bi-calendar4-week"></span><span class="mtext">Pelanggan</span>
                      </a>
                  </li>

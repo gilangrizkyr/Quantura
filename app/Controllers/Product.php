@@ -22,7 +22,7 @@ class Product extends BaseController
     // Tampilkan semua produk
     public function index()
     {
-        $data['products'] = $this->productmodel->findAll();
+        $data['products'] = $this->productmodel->getProductsWithCategoryAndWarehouse();
         $data['category'] = $this->categorymodel->findAll();
         $data['warehouse'] = $this->warehousemodel->findAll();
 
@@ -60,12 +60,12 @@ class Product extends BaseController
         $data = [
             'name' => $this->request->getPost('name'),
             'sku' => $this->request->getPost('sku'),
-            'category_id' => $this->request->getPost('category'),
+            'category_id' => $this->request->getPost('category_id'),
             'unit' => $this->request->getPost('unit'),
             'cost_price' => $this->request->getPost('cost_price'),
             'selling_price' => $this->request->getPost('selling_price'),
             'stock' => $this->request->getPost('stock'),
-            'warehouse_id' => $this->request->getPost('warehouse'),
+            'warehouse_id' => $this->request->getPost('warehouse_id'),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ];

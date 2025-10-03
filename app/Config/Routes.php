@@ -55,6 +55,13 @@ $routes->get('/customers/edit/(:num)', 'Customers::edit/$1');
 $routes->get('/customers/detail/(:num)', 'Customers::detail/$1');
 $routes->get('/customers/delete/(:num)', 'Customers::delete/$1');
 
+$routes->get('/', 'Invoice::index');
+$routes->get('/invoice', 'Invoice::index');
+$routes->post('/invoice/save', 'Invoice::save');
+$routes->get('/invoice/edit/(:num)', 'Invoice::edit/$1');
+$routes->get('/invoice/detail/(:num)', 'Invoice::detail/$1');
+$routes->get('/invoice/delete/(:num)', 'Invoice::delete/$1');
+
 
 $routes->get('/', 'Users::index');
 $routes->get('/users', 'Users::index');
@@ -62,3 +69,6 @@ $routes->post('/users/save', 'Users::save');
 $routes->get('/users/edit/(:num)', 'Users::edit/$1');
 $routes->get('/users/detail/(:num)', 'Users::detail/$1');
 $routes->get('/users/delete/(:num)', 'Users::delete/$1');
+
+
+$routes->get('pergerakan/searchProduct', 'Pergerakan::searchProduct');

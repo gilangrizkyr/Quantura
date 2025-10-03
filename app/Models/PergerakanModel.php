@@ -13,9 +13,7 @@ class PergerakanModel extends Model
         'product_id',
         'type',
         'quantity',
-        'reference',
-        'created_at',
-        'updated_at',
+        'reference'
     ];
 
     // Auto timestamps
@@ -27,10 +25,21 @@ class PergerakanModel extends Model
     {
         return $this->db->table('stock_movements')
             ->select('stock_movements.*, products.name as product_name')
-            ->join('products AS products', 'products.name = stock_movements.product_id')
+            ->join('products', 'stock_movements.product_id = products.id', 'left')
             ->get()
             ->getResultArray();
     }
+
+
+    // public function getProductsWithCategoryAndWarehouse()
+    // {
+    //     return $this->db->table('products')
+    //         ->select('products.*, categories.name as category_name, warehouses.name as warehouse_name')
+    //         ->join('categories', 'products.category_id = categories.id', 'left')
+    //         ->join('warehouses', 'products.warehouse_id = warehouses.id', 'left')
+    //         ->get()
+    //         ->getResultArray();
+    // }
 
     public function getEnumPergerakan($table, $column)
     {

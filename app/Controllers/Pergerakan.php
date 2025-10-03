@@ -19,7 +19,7 @@ class Pergerakan extends BaseController
     // Tampilkan semua produk
     public function index()
     {
-        $data['pergerakan'] = $this->pergerakanmodel->findAll();
+        $data['pergerakan'] = $this->pergerakanmodel->getPergerakan();
         $data['products'] = $this->productmodel->findAll();
         $data['roles'] = $this->pergerakanmodel->getEnumPergerakan('stock_movements', 'type');
         $model = new PergerakanModel();
@@ -104,5 +104,24 @@ class Pergerakan extends BaseController
         } else {
             return $this->response->setStatusCode(404)->setJSON(['message' => 'Product not found']);
         }
+    }
+
+    public function searchProduct()
+    {
+        $term = $this->request->getGet('term');
+        $products = $this->productmodel
+            ->like('name', $term)
+            ->findAll(10); // batasi max 10 hasil
+
+        $result = [];
+        foreach ($products as $product) {
+            $result[] = [
+                'id' => $product['id'],
+                'label' => $product['name'],
+                'value' => $product['name']
+            ];
+        }
+
+        return $this->response->setJSON($result);
     }
 }

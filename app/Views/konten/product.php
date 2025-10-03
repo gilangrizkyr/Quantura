@@ -43,12 +43,12 @@
                   <th scope="row"><?= $no++ ?></th>
                   <td><?= htmlspecialchars($product['name']) ?></td>
                   <td><?= htmlspecialchars($product['sku']) ?></td>
-                  <td><?= htmlspecialchars($product['category_id']) ?></td>
+                  <td><?= htmlspecialchars($product['category_name']) ?></td>
                   <td><?= htmlspecialchars($product['unit']) ?></td>
                   <td><?= 'Rp ' . number_format($product['cost_price'], 0, ',', '.') ?></td>
                   <td><?= 'Rp ' . number_format($product['selling_price'], 0, ',', '.') ?></td>
                   <td><?= htmlspecialchars($product['stock']) ?></td>
-                  <td><?= htmlspecialchars($product['warehouse_id']) ?></td>
+                  <td><?= htmlspecialchars($product['warehouse_name']) ?></td>
                   <td><?= htmlspecialchars($product['created_at']) ?></td>
                   <td><?= htmlspecialchars($product['updated_at']) ?></td>
                   <td>
@@ -146,7 +146,7 @@
                 id="unit"
                 name="unit"
                 required
-                placeholder="Masukkan unit"
+                placeholder="Contoh: pcs, dus, kg, liter, set, dll"
                 style="background-color: #fff; color: #000 !important;">
             </div>
           </div>
@@ -274,13 +274,6 @@
     rupiah = split[1] !== undefined ? rupiah + "," + split[1] : rupiah;
     return prefix === undefined ? rupiah : (rupiah ? "Rp " + rupiah : "");
   }
-
-  // function setupRupiahInput(id) {
-  //   const input = document.getElementById(id);
-  //   input.addEventListener("keyup", function(e) {
-  //     this.value = formatRupiah(this.value, "Rp ");
-  //   });
-  // }
 
   function setupRupiahInput(id) {
     const input = document.getElementById(id);

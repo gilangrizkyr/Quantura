@@ -1,4 +1,6 @@
 <!-- js -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 <script src="<?= base_url('assets/master/vendors/scripts/core.js') ?>"></script>
 <script src="<?= base_url('assets/master/vendors/scripts/script.min.js') ?>"></script>
 <script src="<?= base_url('assets/master/vendors/scripts/process.js') ?>"></script>
@@ -183,7 +185,8 @@
     });
     
 </script>
-    <!-- Leaflet CSS & JS -->
+
+<!-- Leaflet CSS & JS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 

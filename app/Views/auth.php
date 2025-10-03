@@ -129,6 +129,7 @@
                                     name="password"
                                     id="password"
                                     class="form-control form-control-lg"
+                                    required
                                     placeholder="**********" />
                                 <div class="input-group-append custom">
                                     <span class="input-group-text">
