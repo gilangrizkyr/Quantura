@@ -6,7 +6,7 @@
             <div class="pd-20 card-box mb-30">
                 <div class="clearfix mb-20">
                     <div class="pull-left">
-                        <h4 class="text-blue h4">Invoice</h4>
+                        <h4 class="text-blue h4">Invoice Item</h4>
                     </div>
                     <div class="pull-right">
                         <a
@@ -23,13 +23,12 @@
                     <thead>
                         <tr>
                             <th scope="col">No</th>
-                            <th scope="col">Nomor Invoice</th>
-                            <th scope="col">Pelanggan</th>
-                            <th scope="col">Tanggal</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">Status Pembayaran</th>
-                            <th scope="col">Catatan</th>
-                            <th scope="col">Create</th>
+                            <th scope="col">Invoice</th>
+                            <th scope="col">Produk</th>
+                            <th scope="col">Quatity</th>
+                            <th scope="col">Harga</th>
+                            <th scope="col">Sub Total</th>
+   
                             <th scope="col">Update</th>
                             <th scope="col">Aksi</th>
                         </tr>
@@ -40,11 +39,10 @@
                             <?php foreach ($invoice as $invoice): ?>
                                 <tr>
                                     <th scope="row"><?= $no++ ?></th>
-                                    <td><?= htmlspecialchars($invoice['invoice_number']) ?></td>
-                                    <td><?= htmlspecialchars($invoice['customer_id']) ?></td>
-                                    <td><?= htmlspecialchars($invoice['date']) ?></td>
-                                    <td><?= htmlspecialchars($invoice['total']) ?></td>
-                                    <td><?= htmlspecialchars($invoice['payment_status']) ?></td>
+                                    <td><?= htmlspecialchars($invoice['invoice_id']) ?></td>
+                                    <td><?= htmlspecialchars($invoice['product_id']) ?></td>
+                                    <td><?= htmlspecialchars($invoice['price']) ?></td>
+                                    <td><?= htmlspecialchars($invoice['subtotal']) ?></td>
                                     <td><?= htmlspecialchars($invoice['creates_at']) ?></td>
                                     <td><?= htmlspecialchars($invoice['update_at']) ?></td>
                                     <td>

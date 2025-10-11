@@ -62,6 +62,13 @@ $routes->get('/invoice/edit/(:num)', 'Invoice::edit/$1');
 $routes->get('/invoice/detail/(:num)', 'Invoice::detail/$1');
 $routes->get('/invoice/delete/(:num)', 'Invoice::delete/$1');
 
+$routes->get('/', 'Invoice_Item::index');
+$routes->get('/invoice_item', 'Invoice_item::index');
+$routes->post('/invoice_item/save', 'Invoice_Item::save');
+$routes->get('/invoice_item/edit/(:num)', 'Invoice_Item::edit/$1');
+$routes->get('/invoice_item/detail/(:num)', 'Invoice_item::detail/$1');
+$routes->get('/invoice_item/delete/(:num)', 'Invoice_Item::delete/$1');
+
 
 $routes->get('/', 'Users::index');
 $routes->get('/users', 'Users::index');

@@ -130,6 +130,7 @@
          </div>
      </div>
  </div>
+ 
  <div class="left-side-bar">
      <div class="brand-logo">
          <a href="#">
@@ -158,13 +159,17 @@
                      </ul>
                  </li>
                  <li>
-                     <a href="<?= base_url('/warehouse') ?>" class="dropdown-toggle no-arrow">
-                         <span class="micon bi bi-calendar4-week"></span><span class="mtext">Gudang</span>
+                     <a href="#" class="dropdown-toggle">
+                         <span class="micon bi bi-receipt-cutoff"></span><span class="mtext">Informasi Invoice</span>
                      </a>
+                     <ul class="submenu">
+                         <li><a href="<?= base_url('/invoice') ?>">Invoice</a></li>
+                         <li><a href="<?= base_url('/invoice_item') ?>">Invoice Item</a></li>
+                     </ul>
                  </li>
                  <li>
-                     <a href="<?= base_url('/invoice') ?>" class="dropdown-toggle no-arrow">
-                         <span class="micon bi bi-receipt-cutoff"></span><span class="mtext">Penjualan/Invoice</span>
+                     <a href="<?= base_url('/warehouse') ?>" class="dropdown-toggle no-arrow">
+                         <span class="micon bi bi-calendar4-week"></span><span class="mtext">Gudang</span>
                      </a>
                  </li>
                  <li>

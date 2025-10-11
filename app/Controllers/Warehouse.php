@@ -17,7 +17,8 @@ class Warehouse extends BaseController
     // Tampilkan semua produk
     public function index()
     {
-        $data['warehouse'] = $this->warehousetmodel->findAll();
+        $data['warehouse'] = $this->warehousetmodel->orderBy('id', 'DESC')->findAll();
+
         $data['title'] = 'Quantura | warehouse';
 
         return view('content/header', $data)

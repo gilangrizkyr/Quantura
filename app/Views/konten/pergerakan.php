@@ -87,20 +87,20 @@
             <form id="pergerakanForm" method="POST" action="<?= base_url('pergerakan/save') ?>">
                 <div class="modal-body">
                     <input type="hidden" id="pergerakanId" name="id">
-
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="product_name" style="color: #000 !important;">Pilih Produk <span class="text-danger">*</span></label>
-                            <input
-                                type="text"
+                            <label for="product_id" style="color: #000 !important;">Pilih Produk <span class="text-danger">*</span></label>
+                            <select
                                 class="form-control"
-                                id="product_name"
-                                placeholder="Cari Produk"
+                                id="product_id"
+                                name="product_id"
                                 required
-                                autocomplete="off"
-                                style="background-color: #fff; color: #000 !important;">
-                            <!-- Hidden input untuk product_id -->
-                            <input type="hidden" id="product_id" name="product_id">
+                                style="background-color: #fff; color: #000 !important; width: 100%;">
+                                <option value="">-- Pilih Produk --</option>
+                                <?php foreach ($products as $product): ?>
+                                    <option value="<?= $product['id'] ?>"><?= esc($product['name']) ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
 
                         <div class="form-group col-md-6">
@@ -121,9 +121,7 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="reference" style="color: #000 !important;">
-                                Reference<span class="text-danger">*</span>
-                            </label>
+                            <label for="reference" style="color: #000 !important;">Reference <span class="text-danger">*</span></label>
                             <input
                                 type="text"
                                 class="form-control"
@@ -135,7 +133,7 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="quantity" style="color: #000 !important;">Jumlah<span class="text-danger">*</span></label>
+                            <label for="quantity" style="color: #000 !important;">Jumlah <span class="text-danger">*</span></label>
                             <input
                                 type="number"
                                 class="form-control"
@@ -153,20 +151,49 @@
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
+
         </div>
     </div>
 </div>
+<style>
+    .select2-container .select2-selection--single {
+        height: 45px !important;
+        /* sesuai form-control */
+        padding: 6px 3px;
+        border: 1px solid #ced4da;
+        background-color: #fff;
+        color: #000;
+        border-radius: 7px;
+        font-family: sans-serif;
+        font-size: 15px;
+    }
 
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: center;
+    }
+</style>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 <!-- JavaScript -->
 <script>
+    $(document).ready(function() {
+        $('#product_id').select2({
+            placeholder: 'Pilih Produk...',
+            width: '100%',
+            dropdownParent: $('#pergerakanModal')
+        });
+    });
+
+
     function openCreatePergerakan() {
         $('#modalTitle').text('Tambah Data');
         $('#pergerakanForm')[0].reset();
+        $('#product_id').val('').trigger('change');
+        $('#type').val('');
         $('#pergerakanId').val('');
-        $('#product_id').val(''); // reset hidden product id
+        $('#quantity').val('');
+        $('#reference').val('');
         $('#pergerakanModal').modal('show');
     }
 
@@ -181,12 +208,7 @@
             success: function(data) {
                 $('#modalTitle').text('Edit Data');
                 $('#pergerakanId').val(data.id);
-
-                // Set nama produk di input text autocomplete
-                $('#product_name').val(data.product_name || '');
-                // Set id produk di hidden input
-                $('#product_id').val(data.product_id || '');
-
+                $('#product_id').val(data.product_id).trigger('change');
                 $('#type').val(data.type);
                 $('#quantity').val(data.quantity);
                 $('#reference').val(data.reference);
@@ -198,32 +220,11 @@
         });
     }
 
-    $(function() {
-        $("#product_name").autocomplete({
-            source: function(request, response) {
-                $.ajax({
-                    url: "<?= base_url('pergerakan/searchProduct') ?>",
-                    dataType: "json",
-                    data: {
-                        term: request.term
-                    },
-                    success: function(data) {
-                        response(data); // ini data JSON yang kamu kirim itu
-                    }
-                });
-            },
-            minLength: 2,
-            select: function(event, ui) {
-                $("#product_name").val(ui.item.label); // tampilkan nama produk di input
-                $("#product_id").val(ui.item.id); // simpan id produk ke hidden input
-                return false;
-            }
-        });
-
-    });
-
-    // Optional: Clear hidden product_id jika user mengubah input manual dan tidak memilih autocomplete
-    $('#product_name').on('input', function() {
-        $('#product_id').val('');
+    $('#pergerakanForm').on('submit', function(e) {
+        const productId = $('#product_id').val();
+        if (!productId) {
+            e.preventDefault();
+            alert('Silakan pilih produk terlebih dahulu!');
+        }
     });
 </script>

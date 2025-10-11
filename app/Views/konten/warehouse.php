@@ -61,7 +61,6 @@
 
 
 
-<!-- MODEL POP UP -->
 <div id="warehouseModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content" style="background-color: #f8f9fa; color: #000 !important;">
@@ -94,8 +93,8 @@
                                 placeholder="Masukkan Nama Kategori"
                                 style="background-color: #fff; color: #000 !important;">
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="location" style="color: #000 !important;"> Alamat <span class="text-danger">*</span></label>
+                        <div class="form-group col-md-6 position-relative">
+                            <label for="location" style="color: #000 !important;">Alamat <span class="text-danger">*</span></label>
                             <input
                                 type="text"
                                 class="form-control"
@@ -103,8 +102,16 @@
                                 name="location"
                                 required
                                 placeholder="Masukkan Alamat Gudang"
+                                autocomplete="off"
                                 style="background-color: #fff; color: #000 !important;">
+
+                            <!-- Dropdown result -->
+                            <div id="location-results"
+                                class="list-group position-absolute w-100"
+                                style="z-index: 9999; max-height: 200px; overflow-y: auto;">
+                            </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="modal-footer bg-light">
@@ -118,9 +125,44 @@
 
 
 
+<!-- Tambahkan ini di bawah sebelum tag </body> -->
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script> -->
 
-<!-- JavaScript -->
 <script>
+    const locationInput = document.getElementById('location');
+    const resultBox = document.getElementById('location-results');
+
+    locationInput.addEventListener('input', function() {
+        const query = this.value;
+        if (query.length < 3) {
+            resultBox.innerHTML = '';
+            return;
+        }
+
+        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&addressdetails=1`)
+            .then(response => response.json())
+            .then(data => {
+                resultBox.innerHTML = '';
+                data.forEach(place => {
+                    const item = document.createElement('a');
+                    item.classList.add('list-group-item', 'list-group-item-action');
+                    item.textContent = place.display_name;
+                    item.addEventListener('click', function() {
+                        locationInput.value = place.display_name;
+                        resultBox.innerHTML = '';
+                    });
+                    resultBox.appendChild(item);
+                });
+            });
+    });
+
+    // Klik di luar dropdown untuk menutupnya
+    document.addEventListener('click', function(e) {
+        if (!locationInput.contains(e.target) && !resultBox.contains(e.target)) {
+            resultBox.innerHTML = '';
+        }
+    });
+
     function openCreateWarehouse() {
         $('#modalTitle').text('Tambah Gudang');
         $('#warehouseForm')[0].reset();
@@ -142,7 +184,6 @@
                 $('#name').val(data.name);
                 $('#location').val(data.location);
                 $('#warehouseModal').modal('show');
-
             },
             error: function() {
                 alert('Gagal mengambil data produk.');
