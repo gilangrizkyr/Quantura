@@ -28,7 +28,7 @@
                             <th scope="col">Quatity</th>
                             <th scope="col">Harga</th>
                             <th scope="col">Sub Total</th>
-   
+
                             <th scope="col">Update</th>
                             <th scope="col">Aksi</th>
                         </tr>
@@ -49,7 +49,7 @@
                                         <a href="javascript:void(0)" title="Edit" onclick="openEditModal(<?= $invoice['id'] ?>)">
                                             <i class="icon-copy dw dw-edit2"></i>
                                         </a>
-                                        <a href="<?= base_url('invoice/delete/' . $invoice['id']) ?>"
+                                        <a href="<?= base_url('invoice_item/delete/' . $invoice['id']) ?>"
                                             onclick="return confirm('Yakin ingin menghapus invoice ini?')" title="Hapus">
                                             <i class="icon-copy dw dw-delete"></i>
                                         </a>
@@ -58,7 +58,7 @@
                             <?php endforeach; ?>
                         <?php else: ?>
                             <tr>
-                                <td colspan="10" class="text-center">Belum ada data Invoice.</td>
+                                <td colspan="10" class="text-center">Belum ada data Invoice Item.</td>
                             </tr>
                         <?php endif; ?>
                     </tbody>
